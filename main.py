@@ -10,7 +10,16 @@ import sys
 STORY = "She kept his voicemail. Still answers."
 
 
+def check_story() -> tuple[int, int]:
+    """Return (word count, character count) for the story text."""
+    return len(STORY.split()), len(STORY)
+
+
 def main() -> int:
+    if "--check" in sys.argv[1:]:
+        words, chars = check_story()
+        print(f"{words} words, {chars} characters")
+        return 0 if (words, chars) == (6, 38) else 1
     words = STORY.split()
     if len(words) != 6:
         print(f"story must be exactly 6 words, got {len(words)}", file=sys.stderr)
